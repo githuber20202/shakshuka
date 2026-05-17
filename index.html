@@ -29,10 +29,10 @@
     <main class="max-w-md mx-auto px-4 mt-4 space-y-6">
 
         <section class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 shadow-inner">
-            <div class="text-xs text-slate-400 uppercase tracking-widest mb-1 mono">NETWORK_MISSION_OBJECTIVE</div>
+            <div class="text-xs text-slate-400 uppercase tracking-widest mb-1 mono">PROJECT_METRICS</div>
             <h2 class="text-2xl font-black text-white mb-2">מבצע "בוקר שקשוקות"</h2>
             <p class="text-sm text-slate-300 leading-relaxed">
-                "חמ"ל שובשוקה: תרשמו מי מביא מה, תעקבו אחרי הטיימרים של הרוטב, ותוודאו שהפרויקט לא נשרף.".
+                "חמ"ל שובשוקה: תרשמו מי מביא מה, תעקבו אחרי הטיימרים של הרוטב, ותוודאו שהפרויקט לא נשרף."
             </p>
             <div class="grid grid-cols-3 gap-2 mt-4 text-center">
                 <div class="bg-slate-950 p-2 rounded border border-slate-800">
@@ -40,7 +40,7 @@
                     <div class="text-lg font-bold text-emerald-400 mono" id="readiness-rate">0%</div>
                 </div>
                 <div class="bg-slate-950 p-2 rounded border border-slate-800">
-                    <div class="text-xs text-slate-500">חוסרים אגפיים</div>
+                    <div class="text-xs text-slate-500">מצרכים חסרים</div>
                     <div class="text-lg font-bold text-rose-500 mono" id="missing-count">0</div>
                 </div>
                 <div class="bg-slate-950 p-2 rounded border border-slate-800">
@@ -54,7 +54,7 @@
             <div class="flex justify-between items-center mb-4">
                 <div class="flex items-center gap-2">
                     <i data-lucide="truck" class="text-emerald-400 w-5 h-5"></i>
-                    <h3 class="text-lg font-bold text-white">סטטוס אספקה לוגיסטית (רשתי)</h3>
+                    <h3 class="text-lg font-bold text-white">סטטוס אספקה (רשתי)</h3>
                 </div>
             </div>
 
@@ -80,27 +80,25 @@
                 <h3 class="text-lg font-bold text-white">פרוטוקול ביצוע (סנכרון שלבים)</h3>
             </div>
 
-            <div class="space-y-4" id="recipe-steps">
-                </div>
+            <div class="space-y-4" id="recipe-steps"></div>
         </section>
 
     </main>
 
     <footer class="text-center text-[10px] text-slate-600 mono mt-8">
-        SHOBSHUKA CLOUD SYSTEM // SECURE MULTI-USER OPERATION // 2026
+        SHUBSHUKA CLOUD SYSTEM // SECURE MULTI-USER OPERATION // 2026
     </footer>
 
     <script>
         // --- קונפיגורציית ה-DATABASE ---
-        // הדבק כאן את כתובת ה-URL שקיבלת מ-Firebase Realtime Database
         const FIREBASE_DB_URL = "https://alex-s-project-e9e57-default-rtdb.firebaseio.com/"; 
 
-        // מבנה שלבי המתכון (קבוע בקוד, הסטטוס נשמר בשרת)
+        // מבנה שלבי המתכון (גרסה מעודכנת ומאוזנת)
         const stepsData = [
-            { id: 1, title: "שלב א': פריסת כוחות במחבת", desc: "מחממים שמן זית, זורקים פנימה בצל קצוץ ושום. מטגנים עד להזהבה קלה.", duration: "05:00" },
-            { id: 2, title: "שלב ב': הפגזת עגבניות", desc: "מוסיפים את העגבניות המרוסקות, פלפל חריף, פפריקה, מלח ופלפל. מערבבים ומביאים לבעבוע.", duration: "08:00" },
-            { id: 3, title: "שלב ג': צמצום טווחים", desc: "מנמיכים את האש, מכסים את המחבת ומאפשרים לרוטב להסמיך ולהפוך ליחידה אורגנית אחת.", duration: "10:00" },
-            { id: 4, title: "שלב ד': הטלת חימוש (הביצים)", desc: "יוצרים גומות ברוטב, שוברים פנימה את הביצים בזהירות. סוגרים מכסה לעוד כמה דקות.", duration: "06:00" }
+            { id: 1, title: "שלב א': פריסה והזהבה", desc: "מחממים שמן זית, מוסיפים פנימה בצל קצוץ ושום. מטגנים עד להזהבה קלה וריח טוב במתחם.", duration: "05:00" },
+            { id: 2, title: "שלב ב': שילוב בסיס הרוטב", desc: "מוסיפים את העגבניות המרוסקות, פלפל חריף (לפי הטעם), פפריקה, מלח ופלפל. מערבבים היטב ומביאים לבעבוע.", duration: "08:00" },
+            { id: 3, title: "שלב ג': הסמכה וצמצום", desc: "מנמיכים את עוצמת האש, מכסים את המחבת ומאפשרים לרוטב להסמיך ולהתגבש ליחידה אחת.", duration: "10:00" },
+            { id: 4, title: "שלב ד': הוספת הביצים", desc: "יוצרים גומות קטנות ברוטב, שוברים פנימה את הביצים בזהירות. סוגרים מכסה עד שהחלבון מוכן והחלמון עדיין רוטט.", duration: "06:00" }
         ];
 
         // שעון חמ"ל עליון
@@ -109,7 +107,7 @@
             document.getElementById('live-timer').innerHTML = `NET_STATUS: CONNECTED<br>${now.toLocaleTimeString('he-IL')} | ${now.toLocaleDateString('he-IL')}`;
         }, 1000);
 
-        // פונקציות עזר לתקשורת מול ה-API של Firebase (REST API)
+        // פונקציות עזר לתקשורת מול ה-API של Firebase
         async function fetchDatabase() {
             try {
                 const response = await fetch(`${FIREBASE_DB_URL}/.json`);
@@ -132,10 +130,10 @@
             }
         }
 
-        // פונקציית האזנה לעדכונים (Polling קל כל 2 שניות כדי שיתעדכן בין הטלפונים בזמן אמת)
+        // פונקציית האזנה לעדכונים (Polling כל 2 שניות)
         async function startSync() {
             if (FIREBASE_DB_URL.includes("נא_להדביק_כאן")) {
-                alert("עצור! שכחת להדביק את הקישור ל-Firebase בשורה 95 של הקוד!");
+                alert("עצור! שכחת להדביק את הקישור ל-Firebase בשורה 69 של הקוד!");
                 return;
             }
             
@@ -161,7 +159,7 @@
             let arrivedCount = 0;
 
             if (keys.length === 0) {
-                listEl.innerHTML = `<div class="text-center text-xs text-slate-600 py-4">אין אמל"ח במערכת. הזן מצרך ראשון למעלה!</div>`;
+                listEl.innerHTML = `<div class="text-center text-xs text-slate-600 py-4">אין מצרכים ברשת. הזן מצרך ראשון למעלה!</div>`;
             }
 
             keys.forEach(key => {
@@ -174,11 +172,11 @@
                 card.innerHTML = `
                     <div>
                         <div class="text-sm font-bold ${item.arrived ? 'text-emerald-400 line-through' : 'text-slate-200'}">${item.name}</div>
-                        <div class="text-xs text-slate-400">הקצה: ${item.responsible}</div>
+                        <div class="text-xs text-slate-400">אחראי: ${item.responsible}</div>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="toggleArrived('${key}', ${item.arrived})" class="px-3 py-1 rounded text-xs font-bold transition-all ${item.arrived ? 'bg-emerald-500 text-slate-950' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}">
-                            ${item.arrived ? 'באתר' : 'סימון הגעה'}
+                            ${item.arrived ? 'הגיע' : 'סימון הגעה'}
                         </button>
                         <button onclick="deleteItem('${key}')" class="p-1 text-slate-600 hover:text-rose-500 transition-all">
                             <i data-lucide="trash-2" class="w-4 h-4"></i>
@@ -245,7 +243,7 @@
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed mb-3">${step.desc}</p>
                     <button onclick="setActiveStep(${step.id}, ${isActive})" class="w-full py-1.5 rounded text-xs font-bold transition-all ${isActive ? 'bg-amber-500 text-slate-950' : 'bg-slate-900 text-slate-300 border border-slate-700 hover:bg-slate-800'}">
-                        ${isActive ? '⚡ בביצוע כלל ארצי' : 'עדכן חמ"ל על תחילת שלב זה'}
+                        ${isActive ? '⚡ בביצוע משותף' : 'עדכן על תחילת שלב זה'}
                     </button>
                 `;
                 stepsEl.appendChild(card);
@@ -269,7 +267,6 @@
             await updateDatabase('activeStep', nextStep);
         }
 
-        // הפעלה ראשונית של מערכת הסנכרון
         startSync();
     </script>
 </body>
